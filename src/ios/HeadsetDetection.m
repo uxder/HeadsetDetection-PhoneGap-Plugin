@@ -6,20 +6,20 @@
 - (void) detect:(CDVInvokedUrlCommand*)command {
   NSString *callbackId = command.callbackId;
   CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:[self isHeadsetEnabled]];
-  [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+  [self.commandDelegate sendPluginResult:result callbackId:callbackId];
 }
 
-- (BOOL) isHeadsetEnabled {
-  AVAudioSessionRouteDescription* route = [[AVAudioSession sharedInstance] currentRoute];
-  for (AVAudioSessionPortDescription* desc in [route outputs]) {
-    if ([[desc portType] isEqualToString:AVAudioSessionPortHeadphones] ||
-        [[desc portType] isEqualToString:AVAudioSessionPortBluetoothHFP] ||
-        [[desc portType] isEqualToString:AVAudioSessionPortBluetoothA2DP] ||
-        [[desc portType] isEqualToString:AVAudioSessionPortBluetoothLE]) {
-      return YES;
+- (BOOL)isHeadsetEnabled
+{
+    AVAudioSessionRouteDescription *route = [[AVAudioSession sharedInstance] currentRoute];
+
+    BOOL headphonesLocated = NO;
+    for( AVAudioSessionPortDescription *portDescription in route.outputs )
+    {
+        headphonesLocated |= ( [portDescription.portType isEqualToString:AVAudioSessionPortHeadphones] );
     }
-  }
-  return NO;
+    return headphonesLocated;
 }
+
 
 @end
