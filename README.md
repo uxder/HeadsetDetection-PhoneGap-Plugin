@@ -25,11 +25,11 @@ HeadsetDetection is compatible with [Cordova Plugman](https://github.com/apache/
 
 PhoneGap CLI:
 ```
-$ phonegap local plugin add https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin.git
+$ phonegap local plugin add https://github.com/uxder/HeadsetDetection-PhoneGap-Plugin.git
 ```
 Cordova CLI:
 ```
-$ cordova plugin add https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin.git
+$ cordova plugin add https://github.com/uxder/HeadsetDetection-PhoneGap-Plugin.git
 $ cordova prepare
 ```
 
